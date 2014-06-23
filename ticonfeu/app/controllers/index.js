@@ -1,5 +1,5 @@
-function doClick(e) {
-    alert($.label.text);
-}
+$.venues.addEventListener('click', function(){
+	Alloy.createController('venues');
+});
 
 $.index.open();

@@ -1,5 +1,6 @@
 <Alloy>
 	<Window class="container">
-		<Label id="label" onClick="doClick">Hello, World</Label>
+		<Label id="title">tiConf 2014</Label>
+		<Button id="venues" title="venues"></Button>
 	</Window>
 </Alloy>
