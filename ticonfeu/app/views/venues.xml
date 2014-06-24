@@ -1,4 +1,8 @@
 <Alloy>
-	<View class="container">
-	</View>
+	<Window class="container">
+		<Label id="title">Venues</Label>
+		<View id="notFound">
+			<Label>No Venues found</Label>
+		</View>
+	</Window>
 </Alloy>

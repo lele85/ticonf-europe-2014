@@ -1,4 +1,9 @@
-
 ".container" : {
-  
+  backgroundColor : "white"
+}
+"#title": {
+	top: "20dp"
+} 
+"#notFound" : {
+	visible : false
 }

@@ -15,7 +15,7 @@ describe("Index", function() {
 	it("should contain a button to reach conference venues", function() {
 		expect($.venues.title).toEqual("venues");
 		spyOn(Alloy, "createController");
-		$.__views.venues.fireEvent('click');
+		$.venues.fireEvent('click');
 		waitsFor(function() {
 			return Alloy.createController.callCount === 1;
 		}, 500);
