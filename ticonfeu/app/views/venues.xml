@@ -4,5 +4,15 @@
 		<View id="notFound">
 			<Label>No Venues found</Label>
 		</View>
+		<ListView id="venuesList" defaultItemTemplate="template">
+            <Templates>
+                <ItemTemplate name="template" class="template">
+                <View>
+                    <Label bindId="name" id="name" />
+                </View>
+                </ItemTemplate>
+            </Templates>
+            <ListSection id="venuesSection"></ListSection>
+        </ListView>
 	</Window>
 </Alloy>
