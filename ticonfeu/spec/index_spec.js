@@ -20,7 +20,8 @@ describe("Index", function() {
 			return Alloy.createController.callCount === 1;
 		}, 500);
 		runs(function() {
-			expect(Alloy.createController).toHaveBeenCalledWith('venues');
+			expect(Alloy.createController.mostRecentCall.args[0]).toBe('venues');
+			expect(Alloy.createController.mostRecentCall.args[1].venuesService).not.toBeUndefined();
 		});
 	});
 

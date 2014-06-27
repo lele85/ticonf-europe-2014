@@ -1,5 +1,7 @@
 $.venues.addEventListener('click', function(){
-	Alloy.createController('venues');
+	Alloy.createController('venues', {
+		venuesService : require("/services/venues")
+	});
 });
 
 $.index.open();
