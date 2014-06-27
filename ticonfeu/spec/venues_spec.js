@@ -47,6 +47,28 @@ describe("Venues", function() {
 		});
 	});
 
+	it("should show an appropriate message if service call fails", function(){
+		expect($.networkError.visible).toBe(false);
+
+		getAll.andCallFake(function(cb) {
+			cb(true);
+		});
+
+		$ = Alloy.createController("venues", {
+			venuesService: venuesService
+		});
+
+		
+
+		waitsFor(function() {
+			return getAll.wasCalled;
+		}, 500);
+
+		runs(function() {
+			expect($.networkError.visible).toBe(true);
+		});
+	});
+
 	it("should show venues on a listView if present", function() {
 
 		getAll.andCallFake(function(cb) {

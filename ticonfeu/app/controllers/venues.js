@@ -15,6 +15,8 @@ venuesService.getAll(function(error, data) {
 			});
 			$.venuesSection.setItems(items);
 		}
+	} else {
+		$.networkError.show();
 	}
 });
 

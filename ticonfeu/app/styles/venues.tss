@@ -7,6 +7,9 @@
 "#notFound" : {
 	visible : false
 }
+"#networkError" : {
+	visible : false
+}
 "#venuesList" : {
 	top : "40dp"
 }

@@ -4,6 +4,9 @@
 		<View id="notFound">
 			<Label>No Venues found</Label>
 		</View>
+        <View id="networkError">
+            <Label>Oooops :(</Label>
+        </View>
 		<ListView id="venuesList" defaultItemTemplate="template">
             <Templates>
                 <ItemTemplate name="template" class="template">

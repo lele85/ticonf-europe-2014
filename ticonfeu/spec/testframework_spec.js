@@ -18,18 +18,19 @@ describe("An awesome test framework", function() {
 
 	it("should let you run async tests", function() {
 		// Simply adding a delay
-		var time = 0;
+		var flag = false;
 		setTimeout(function() {
-			time = 200
+			flag = true;
 		}, 200);
-		expect(time).toBe(0);
+		//guard
+		expect(flag).toBe(false);
 		waits(100);
 		runs(function() {
-			expect(time).toBe(0);
+			expect(flag).toBe(false);
 		});
 		waits(100);
 		runs(function() {
-			expect(time).toBe(200);
+			expect(flag).toBe(true);
 		});
 	});
 
@@ -90,7 +91,7 @@ describe("An awesome test framework", function() {
 
 	it("should let you add custom matchers", function(){
 		// In addition to standard ones: https://github.com/pivotal/jasmine/wiki/Matchers
-		
+
 
 	});
 });
