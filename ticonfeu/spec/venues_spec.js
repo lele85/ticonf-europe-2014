@@ -47,7 +47,7 @@ describe("Venues", function() {
 		});
 	});
 
-	it("should show an appropriate message if service call fails", function(){
+	it("should show an appropriate message if service call fails", function() {
 		expect($.networkError.visible).toBe(false);
 
 		getAll.andCallFake(function(cb) {
@@ -58,7 +58,7 @@ describe("Venues", function() {
 			venuesService: venuesService
 		});
 
-		
+
 
 		waitsFor(function() {
 			return getAll.wasCalled;
@@ -101,7 +101,32 @@ describe("Venues", function() {
 		});
 	});
 
-	it("should cache venues inside app properties", function() {
+	it("should cache venues inside app properties when they fetched for the fist time", function() {
+		// You can find a good part of titanium apis here: https://gist.github.com/Cside/2233668
+		var realApp = Ti.App.Properties;
+		Titanium.App = function(){};
+		Titanium.App.Properties =  function(){};
+		Titanium.App.Properties.setObject = function(){};
+
+		var setObject = spyOn(Ti.App.Properties, "setObject");
+
+		getAll.andCallFake(function(cb) {
+			cb(null, [{
+				name: "Amsterdam"
+			}]);
+		});
+
+		$ = Alloy.createController("venues", {
+			venuesService: venuesService
+		});
+
+		waitsFor(function() {
+			return getAll.wasCalled;
+		});
+
+		runs(function() {
+			expect(setObject).toHaveBeenCalled();
+		});
 
 	});
 });

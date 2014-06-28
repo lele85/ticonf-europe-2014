@@ -1,8 +1,10 @@
 var args = arguments[0] || {};
 var venuesService = args.venuesService;
 
+
 venuesService.getAll(function(error, data) {
 	if (!error) {
+		Ti.App.Properties.setObject("venues", data);
 		if (_.isEmpty(data)) {
 			$.notFound.show();
 		} else {
