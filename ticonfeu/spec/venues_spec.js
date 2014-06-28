@@ -3,8 +3,13 @@ describe("Venues", function() {
 	var $;
 	var venuesService;
 	var getAll;
+	var opened = false;
+	var windowOpen = function(){
+		return opened;
+	};
 
 	beforeEach(function() {
+		opened = false;
 		venuesService = require("services/venues");
 		getAll = spyOn(venuesService, "getAll");
 		expect(getAll).not.toHaveBeenCalled();
@@ -12,6 +17,10 @@ describe("Venues", function() {
 		$ = Alloy.createController("venues", {
 			venuesService: venuesService
 		});
+
+		$.venues.addEventListener('open', function(){
+			opened = true;
+		})
 	});
 
 	//Unit Test
@@ -19,7 +28,6 @@ describe("Venues", function() {
 		expect($.title.text).toBe("Venues");
 	});
 
-	//Interaction test
 	it("should fetch the list of venues from web service", function() {
 		waitsFor(function() {
 			return getAll.wasCalled;
@@ -28,6 +36,14 @@ describe("Venues", function() {
 			expect(getAll).toHaveBeenCalled();
 		})
 	});
+
+	it("should fetch the list web service before window open", function() {
+		waitsFor(windowOpen,500);
+		runs(function(){
+			expect(getAll).toHaveBeenCalled();
+		});
+	});
+
 
 	it("should show an appropriate message if no venues was found", function() {
 		expect($.notFound.visible).toBe(false);
@@ -103,7 +119,7 @@ describe("Venues", function() {
 
 	it("should cache venues inside app properties when they fetched for the fist time", function() {
 		// You can find a good part of titanium apis here: https://gist.github.com/Cside/2233668
-		var realApp = Ti.App.Properties;
+		var realApp = Ti.App;
 		Titanium.App = function(){};
 		Titanium.App.Properties =  function(){};
 		Titanium.App.Properties.setObject = function(){};
@@ -126,6 +142,7 @@ describe("Venues", function() {
 
 		runs(function() {
 			expect(setObject).toHaveBeenCalled();
+			Titanium.App = realApp;
 		});
 
 	});

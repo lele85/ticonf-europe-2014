@@ -1,7 +1,9 @@
 describe("An awesome test framework", function() {
+
 	it("should work without pain", function() {
 		expect(true).toBe(true);
 	});
+
 
 	it("should let you run a simple unit test", function() {
 		expect(1 + 1).toBe(2);
@@ -43,35 +45,35 @@ describe("An awesome test framework", function() {
 		var flag = false;
 		setTimeout(function() {
 			flag = true;
-		}, getRandomArbitrary(100,300));
+		}, getRandomArbitrary(100, 300));
 
 		expect(flag).toBe(false);
-		
-		waitsFor(function(){
+
+		waitsFor(function() {
 			return flag;
-		},300);
-		
+		}, 300);
+
 		runs(function() {
 			expect(flag).toBe(true);
 		});
 
 	});
 
-	xit("should let you skip tests", function(){
+	xit("should let you skip tests", function() {
 		//Maybe, one day... quantum computing :)
 		expect(cat).toBe("ALIVE");
 		expect(cat).toBe("DEAD");
 	});
 
-	it("should let you spy on object",function(){
+	it("should let you spy on object", function() {
 		// Cheatsheet: http://tobyho.com/2011/12/15/jasmine-spy-cheatsheet/
 		// Don't spy on framework functions (they are shy)
 		var counter = {
-			incr : function(){}
+			incr: function() {}
 		};
-		var createLoggedButton = function(counter){
+		var createLoggedButton = function(counter) {
 			return {
-				click : function(){
+				click: function() {
 					counter.incr();
 					console.log("CLICKED");
 				}
@@ -89,9 +91,31 @@ describe("An awesome test framework", function() {
 
 	});
 
-	it("should let you add custom matchers", function(){
+	it("should let you add custom matchers", function() {
 		// In addition to standard ones: https://github.com/pivotal/jasmine/wiki/Matchers
-		expect(true).toBe(false);
+		this.addMatchers({
+			toBeOdd: function() {
+				return {
+					compare: function(value) {
+						return {
+							pass: value % 2 !== 0
+						};
+					}
+				};
+			},
+			toBeEven: function(value) {
+				return {
+					compare: function(value) {
+						return {
+							pass: value % 2 === 0
+						};
+					}
+				};
+			}
+		});
+		expect(1).toBeOdd();
+		expect(2).toBeEven();
+		expect(3).toBeOdd();
 
 	});
 });
