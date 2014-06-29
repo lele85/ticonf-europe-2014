@@ -1,3 +1,4 @@
 # Build folder and log file
 tishadow_app
 tishadow_appify
+server/node_modules

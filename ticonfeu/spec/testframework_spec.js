@@ -25,7 +25,6 @@ describe("An awesome test framework", function() {
 			flag = true;
 		}, 200);
 		//guard
-		expect(flag).toBe(false);
 		waits(100);
 		runs(function() {
 			expect(flag).toBe(false);

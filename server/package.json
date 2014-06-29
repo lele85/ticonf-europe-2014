@@ -1,0 +1,12 @@
+{
+  "name": "ticonf",
+  "version": "0.0.1",
+  "description": "TiConfMockServer",
+  "author": "Emanuele Rampichini <emanuele.rampichini@gmail.com>",
+  "private": true,
+  "contributors": [],
+  "dependencies": {
+     "express": "3.x"
+  },
+  "engine": "node >= 0.10.22"
+}
